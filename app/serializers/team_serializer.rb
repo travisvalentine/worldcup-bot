@@ -1,4 +1,3 @@
 class TeamSerializer < ActiveModel::Serializer
-  attributes :short_name,
-             :proper_name
+  attributes :combined_name
 end

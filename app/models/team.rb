@@ -10,4 +10,8 @@ class Team < ActiveRecord::Base
   def past_matches
     matches.where("date <= ?", Time.now.to_date.to_datetime)
   end
+
+  def combined_name
+    "#{short_name} - #{proper_name}"
+  end
 end
