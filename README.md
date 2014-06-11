@@ -1,8 +1,3 @@
-worldcup-bot
-============
-
-An API for a hungrybot script
-
 ## Endpoints:
 
 ###### Team names:
