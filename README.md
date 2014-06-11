@@ -5,6 +5,12 @@ An API for a hungrybot script
 
 ## Endpoints:
 
+###### Team names:
+
+```
+/teams
+```
+
 ###### Today's Matches:
 
 ```
@@ -17,12 +23,6 @@ An API for a hungrybot script
 /matches/:country_short_name
 ```
 
-**Example:**
-
-```
-/matches/USA
-```
-
 ###### Today's Scores:
 
 ```
@@ -33,10 +33,4 @@ An API for a hungrybot script
 
 ```
 /scores/:country_short_name
-```
-
-**Example:**
-
-```
-/matches/BRA
 ```
