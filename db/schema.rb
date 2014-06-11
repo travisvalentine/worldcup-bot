@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140611005216) do
   create_table "teams", force: true do |t|
     t.string   "short_name"
     t.string   "proper_name"
+    t.integer  "fifa_team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

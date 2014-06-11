@@ -19,8 +19,11 @@ task :matches => :environment do
       location = match.css(".mu-i-venue").text
       time = match.css(".s-scoreText").text
 
-      home_team_proper_name = match.css(".home .t-nText").text
-      away_team_proper_name = match.css(".away .t-nText").text
+      home_team = match.at_css(".home")
+      away_team = match.at_css(".away")
+
+      home_team_proper_name = home_team.css(".t-nText").text
+      away_team_proper_name = away_team.css(".t-nText").text
 
       # For final matches whose teams aren't determined
       # we should create a Match but leave the teams as TBD
@@ -28,7 +31,7 @@ task :matches => :environment do
       # If we have a team's proper name, we can create
       # the full match and the team
       if home_team_proper_name.scan(/\W/).any?
-        match = Match.create!(
+        persisted_match = Match.create!(
                   home_team: "TBD",
                   away_team: "TBD",
                   date: date,
@@ -38,10 +41,13 @@ task :matches => :environment do
                   group: group
                 )
       else
-        home_team_short_name = match.css(".home .t-nTri").text
-        away_team_short_name = match.css(".away .t-nTri").text
+        home_team_short_name = home_team.css(".t-nTri").text
+        away_team_short_name = away_team.css(".t-nTri").text
 
-        match = Match.create!(
+        home_team_id = home_team["data-team-id"]
+        away_team_id = away_team["data-team-id"]
+
+        persisted_match = Match.create!(
                   home_team: home_team_short_name,
                   away_team: away_team_short_name,
                   date: date,
@@ -51,8 +57,8 @@ task :matches => :environment do
                   group: group
                 )
 
-        home_team = Team.find_or_create_by(proper_name: home_team_proper_name, short_name: home_team_short_name)
-        away_team = Team.find_or_create_by(proper_name: away_team_proper_name, short_name: away_team_short_name)
+        persisted_home_team = Team.find_or_create_by(proper_name: home_team_proper_name, short_name: home_team_short_name, fifa_team_id: home_team_id)
+        persisted_away_team = Team.find_or_create_by(proper_name: away_team_proper_name, short_name: away_team_short_name, fifa_team_id: away_team_id)
       end
     end
   end
