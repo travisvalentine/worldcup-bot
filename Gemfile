@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'nokogiri'
+gem "active_model_serializers"
 
-gem 'rails', '4.0.4'
+gem "nokogiri"
 
-gem 'rails-api'
+gem "rails", "4.0.4"
 
-gem 'sqlite3'
+gem "rails-api"
+
+gem "sqlite3"
