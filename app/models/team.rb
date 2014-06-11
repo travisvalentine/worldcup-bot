@@ -15,6 +15,6 @@ class Team < ActiveRecord::Base
   end
 
   def combined_name
-    "#{short_name} - #{proper_name}"
+    "#{acronym} - #{name}"
   end
 end
