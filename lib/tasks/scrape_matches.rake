@@ -1,4 +1,4 @@
-desc "Scrape FIFA.com matches and persist them"
+desc "Backfill the fifa_team_id for the Teams in the DB from FIFA.com"
 task :matches => :environment do
 
   require 'rubygems'
@@ -13,52 +13,33 @@ task :matches => :environment do
     date = Date.parse(day['id'])
 
     day.css(".col-xs-12").each do |match|
-      group = match.css(".mu-i-group").text
-
-      stadium = match.css(".mu-i-stadium").text
-      location = match.css(".mu-i-venue").text
-      time = match.css(".s-scoreText").text
-
       home_team = match.at_css(".home")
       away_team = match.at_css(".away")
 
       home_team_proper_name = home_team.css(".t-nText").text
       away_team_proper_name = away_team.css(".t-nText").text
 
-      # For final matches whose teams aren't determined
-      # we should create a Match but leave the teams as TBD
-      #
-      # If we have a team's proper name, we can create
-      # the full match and the team
-      if home_team_proper_name.scan(/\W/).any?
-        persisted_match = Match.create!(
-                  home_team: "TBD",
-                  away_team: "TBD",
-                  date: date,
-                  time: time,
-                  stadium: stadium.strip,
-                  location: location.strip,
-                  group: group
-                )
-      else
+      # only attempt to add the fifa_team_id if the team exists in the DB
+      # and if the Team in the DB's fifa_team_id is nil
+      if !home_team_proper_name.scan(/\W/).any?
         home_team_short_name = home_team.css(".t-nTri").text
         away_team_short_name = away_team.css(".t-nTri").text
 
         home_team_id = home_team["data-team-id"]
         away_team_id = away_team["data-team-id"]
 
-        persisted_match = Match.create!(
-                  home_team: home_team_short_name,
-                  away_team: away_team_short_name,
-                  date: date,
-                  time: time,
-                  stadium: stadium.strip,
-                  location: location.strip,
-                  group: group
-                )
+        persisted_home_team = Team.where(acronym: home_team_short_name).first
+        persisted_away_team = Team.where(acronym: away_team_short_name).first
 
-        persisted_home_team = Team.find_or_create_by(proper_name: home_team_proper_name, short_name: home_team_short_name, fifa_team_id: home_team_id)
-        persisted_away_team = Team.find_or_create_by(proper_name: away_team_proper_name, short_name: away_team_short_name, fifa_team_id: away_team_id)
+        if persisted_home_team.fifa_team_id.nil?
+          persisted_home_team.update_attribute(:fifa_team_id, home_team_id)
+
+          p "Updated FIFA ID for #{home_team_short_name}"
+        elsif persisted_away_team.fifa_team_id.nil?
+          persisted_away_team.update_attribute(:fifa_team_id, away_team_id)
+
+          p "Updated FIFA ID for #{away_team_short_name}"
+        end
       end
     end
   end

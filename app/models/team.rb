@@ -1,14 +1,17 @@
 class Team < ActiveRecord::Base
+  has_many :home_games, class_name: "Match", foreign_key: "home_team_id"
+  has_many :away_games, class_name: "Match", foreign_key: "away_team_id"
+
   def matches
-    Match.where("home_team = ? OR away_team = ?", short_name, short_name)
+    Match.where("home_team_id = ? OR away_team_id = ?", id, id)
   end
 
   def future_matches
-    matches.where("date > ?", Time.now.to_date.to_datetime)
+    matches.where("played_at > ?", DateTime.now)
   end
 
   def past_matches
-    matches.where("date <= ?", Time.now.to_date.to_datetime)
+    matches.where("played_at <= ?", DateTime.now)
   end
 
   def combined_name

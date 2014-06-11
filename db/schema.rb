@@ -13,25 +13,41 @@
 
 ActiveRecord::Schema.define(version: 20140611005216) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "matches", force: true do |t|
-    t.string   "home_team"
-    t.string   "away_team"
-    t.datetime "date"
-    t.time     "time"
+    t.integer  "number"
+    t.string   "round"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.datetime "played_at"
     t.string   "stadium"
-    t.string   "location"
-    t.string   "group"
-    t.string   "score"
+    t.string   "group",              limit: 1
+    t.integer  "home_goals"
+    t.integer  "away_goals"
+    t.integer  "home_penalty_goals"
+    t.integer  "away_penalty_goals"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "matches", ["away_team_id"], name: "index_matches_on_away_team_id", using: :btree
+  add_index "matches", ["group"], name: "index_matches_on_group", using: :btree
+  add_index "matches", ["home_team_id"], name: "index_matches_on_home_team_id", using: :btree
+  add_index "matches", ["number"], name: "index_matches_on_number", unique: true, using: :btree
+  add_index "matches", ["round"], name: "index_matches_on_round", using: :btree
+
   create_table "teams", force: true do |t|
-    t.string   "short_name"
-    t.string   "proper_name"
+    t.string   "acronym",      limit: 3
+    t.string   "name"
+    t.string   "group"
     t.integer  "fifa_team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "teams", ["acronym"], name: "index_teams_on_acronym", unique: true, using: :btree
+  add_index "teams", ["name"], name: "index_teams_on_name", unique: true, using: :btree
 
 end
