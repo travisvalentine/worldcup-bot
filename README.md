@@ -20,7 +20,7 @@ An API for a hungrybot script
 ###### Tomorrow's Matches:
 
 ```
-/matches/:country_short_name
+/matches/tomorrow
 ```
 
 ###### Today's Scores:
