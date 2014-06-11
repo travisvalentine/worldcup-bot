@@ -6,4 +6,8 @@ class Team < ActiveRecord::Base
   def future_matches
     matches.where("date > ?", Time.now.to_date.to_datetime)
   end
+
+  def past_matches
+    matches.where("date <= ?", Time.now.to_date.to_datetime)
+  end
 end

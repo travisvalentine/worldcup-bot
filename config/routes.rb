@@ -1,11 +1,14 @@
 WorldcupBot::Application.routes.draw do
-  resources :teams, only: [:show, :index]
 
   resources :matches, only: [:index] do
     collection do
       get "tomorrow"
     end
   end
+
+  resources :scores, only: [:index, :show]
+
+  resources :teams, only: [:show, :index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
