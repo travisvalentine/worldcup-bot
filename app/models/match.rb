@@ -16,16 +16,11 @@ class Match < ActiveRecord::Base
     'sp' => 'Arena Corinthians, São Paulo'
   }
 
+  has_one :away_team, primary_key: :away_team_id, class_name: "Team", foreign_key: "id"
+  has_one :home_team, primary_key: :home_team_id, class_name: "Team", foreign_key: "id"
+
   scope :today,    -> { where(played_at: DateTime.now .. DateTime.now.end_of_day) }
   scope :tomorrow, -> { where(played_at: DateTime.tomorrow .. DateTime.tomorrow.end_of_day) }
-
-  def home_team
-    Team.where(id: home_team_id).first
-  end
-
-  def away_team
-    Team.where(id: away_team_id).first
-  end
 
   def short_description
     "#{home_team.acronym} vs #{away_team.acronym} - #{played_at}"
