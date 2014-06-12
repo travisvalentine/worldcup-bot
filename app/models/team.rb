@@ -19,6 +19,6 @@ class Team < ActiveRecord::Base
   end
 
   def fifa_link
-    "<a href='http://www.fifa.com/worldcup/teams/team=#{fifa_team_id}/index.html'>Go to FIFA.com for more on #{name}</a>"
+    "Go to FIFA.com for more on #{name} - http://www.fifa.com/worldcup/teams/team=#{fifa_team_id}/index.html"
   end
 end
