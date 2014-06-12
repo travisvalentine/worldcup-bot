@@ -19,7 +19,7 @@ class Match < ActiveRecord::Base
   has_one :away_team, primary_key: :away_team_id, class_name: "Team", foreign_key: "id"
   has_one :home_team, primary_key: :home_team_id, class_name: "Team", foreign_key: "id"
 
-  scope :today,    -> { where(played_at: DateTime.now .. DateTime.now.end_of_day) }
+  scope :today,    -> { where(played_at: DateTime.now.beginning_of_day .. DateTime.now.end_of_day) }
   scope :tomorrow, -> { where(played_at: DateTime.tomorrow .. DateTime.tomorrow.end_of_day) }
 
   def short_description
