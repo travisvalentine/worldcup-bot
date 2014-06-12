@@ -23,7 +23,7 @@ class Match < ActiveRecord::Base
   scope :tomorrow, -> { where(played_at: DateTime.tomorrow .. DateTime.tomorrow.end_of_day) }
 
   def short_description
-    "#{home_team.acronym} vs #{away_team.acronym} - #{played_at}"
+    "#{home_team.acronym} vs #{away_team.acronym} - #{formatted_played_at}"
   end
 
   def long_description
@@ -36,5 +36,9 @@ class Match < ActiveRecord::Base
 
   def stadium_name
     full_location.split(",").first
+  end
+
+  def formatted_played_at
+    Time.at(played_at).strftime("%-m/%-d %I:%M%p")
   end
 end
