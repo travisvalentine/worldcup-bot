@@ -39,6 +39,6 @@ class Match < ActiveRecord::Base
   end
 
   def formatted_played_at
-    Time.at(played_at).strftime("%-m/%-d %I:%M%p")
+    Time.at(played_at).strftime("%-m/%-d %I:%M%p %Z")
   end
 end
