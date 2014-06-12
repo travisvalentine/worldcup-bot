@@ -4,6 +4,10 @@ class LinksController < ApplicationController
 
     team = Team.where("acronym = ?", sanitized_acronym).first
 
-    render json: team.fifa_link
+    if team
+      render json: team.fifa_link
+    else
+      render json: "Be sure to use a team's acronym. For a list try `hungrybot wc teams`"
+    end
   end
 end
