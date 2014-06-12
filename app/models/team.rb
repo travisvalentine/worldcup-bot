@@ -17,4 +17,8 @@ class Team < ActiveRecord::Base
   def combined_name
     "#{acronym} - #{name}"
   end
+
+  def fifa_link
+    "<a href='http://www.fifa.com/worldcup/teams/team=#{fifa_team_id}/index.html'>Go to FIFA.com for more on #{name}</a>"
+  end
 end

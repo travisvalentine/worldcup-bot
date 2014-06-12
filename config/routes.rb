@@ -1,4 +1,5 @@
 WorldcupBot::Application.routes.draw do
+  resources :links, only: [:show]
 
   resources :matches, only: [:index] do
     collection do

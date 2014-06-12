@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
   end
 
   def show
-    team = Team.where("acronym = ?", params[:id].upcase)
+    team = Team.where("acronym = ?", params[:id].upcase).first
 
     render json: team
   end
