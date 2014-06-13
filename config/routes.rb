@@ -7,7 +7,11 @@ WorldcupBot::Application.routes.draw do
     end
   end
 
-  resources :scores, only: [:index, :show]
+  resources :scores, only: [:index, :show] do
+    collection do
+      get "recap"
+    end
+  end
 
   resources :teams, only: [:show, :index]
 
