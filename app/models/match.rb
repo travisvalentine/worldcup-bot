@@ -23,6 +23,10 @@ class Match < ActiveRecord::Base
   scope :tomorrow,  -> { where(played_at: DateTime.tomorrow.beginning_of_day .. DateTime.tomorrow.end_of_day) }
   scope :yesterday, -> { where(played_at: DateTime.yesterday.beginning_of_day .. DateTime.yesterday.end_of_day) }
 
+  def self.most_recent
+    where(["played_at < ?", DateTime.now]).last
+  end
+
   def short_description
     "#{home_team.acronym} vs #{away_team.acronym} - #{formatted_played_at}"
   end
@@ -45,5 +49,9 @@ class Match < ActiveRecord::Base
 
   def score_summary
     "#{home_team.acronym} (#{home_goals}) vs #{away_team.acronym} (#{away_goals}) - #{game_time}"
+  end
+
+  def update
+    ScoreUpdater.new(self).update
   end
 end
