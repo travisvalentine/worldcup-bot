@@ -8,11 +8,12 @@ class ScoreUpdater
   end
 
   def update
-    match_url = "http://www.fifa.com/worldcup/matches/index.html"
+    fifa_prefix = "http://www.fifa.com"
+    match_index_url = "/worldcup/matches/index.html"
 
     formatted_match_date = @match.played_at.to_date.to_s.gsub("-","")
 
-    fifa_matches = Nokogiri::HTML(open(match_url))
+    fifa_matches = Nokogiri::HTML(open(fifa_prefix + match_index_url))
 
     matches_for_day = fifa_matches.css("##{formatted_match_date}")
 
@@ -23,12 +24,20 @@ class ScoreUpdater
 
       next if !correct_match || @match.game_time == "FINAL"
 
-      score_array = match.css(".s-scoreText").text.split("-").map(&:to_i)
+      match_link = match.at_css("a.mu-m-link")
+
+      match_url = fifa_prefix + match_link["href"]
+
+      match_page = Nokogiri::HTML(open(match_url))
+
+      score_array = match_page.css(".s-scoreText").text.split("-").map(&:to_i)
 
       home_score = score_array.first
       away_score = score_array.last
 
-      time = ongoing_match ? match.css(".s-status").text.strip : "FINAL"
+      game_time = match_page.at(".lb-post .event-minute").text
+
+      time = ongoing_match ? game_time.strip : "FINAL"
 
       @match.update_attributes(home_goals: home_score, away_goals: away_score, game_time: time)
     end
