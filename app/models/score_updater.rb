@@ -33,6 +33,6 @@ class ScoreUpdater
       @match.update_attributes(home_goals: home_score, away_goals: away_score, game_time: time)
     end
 
-    true
+    @match
   end
 end

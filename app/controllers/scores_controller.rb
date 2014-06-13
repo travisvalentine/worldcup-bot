@@ -11,6 +11,10 @@ class ScoresController < ApplicationController
     render json: team.past_matches, each_serializer: ScoreSerializer
   end
 
+  def now
+    render json: Match.most_recent.update, serializer: ScoreSerializer
+  end
+
   def recap
     matches = Match.yesterday
 

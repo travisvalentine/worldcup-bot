@@ -9,6 +9,7 @@ WorldcupBot::Application.routes.draw do
 
   resources :scores, only: [:index, :show] do
     collection do
+      get "now"
       get "recap"
     end
   end
