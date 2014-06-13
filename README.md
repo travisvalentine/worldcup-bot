@@ -29,3 +29,9 @@
 ```
 /scores/:country_short_name
 ```
+
+###### Groups Standings:
+
+```
+/groups/:group
+```
