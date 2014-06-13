@@ -39,8 +39,10 @@
 ###### Team's Past/Current Scores:
 
 ```
-/scores/:country_short_name
+/scores/:country_acronym
 ```
+
+[http://worldcup2014bot.herokuapp.com/scores/bra](http://worldcup2014bot.herokuapp.com/scores/bra)
 
 ###### Groups Standings:
 
