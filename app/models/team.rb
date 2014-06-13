@@ -7,11 +7,11 @@ class Team < ActiveRecord::Base
   end
 
   def future_matches
-    matches.where("played_at > ?", DateTime.now)
+    matches.where("played_at > ?", Time.zone.now)
   end
 
   def past_matches
-    matches.where("played_at <= ?", DateTime.now)
+    matches.where("played_at <= ?", Time.zone.now)
   end
 
   def combined_name
