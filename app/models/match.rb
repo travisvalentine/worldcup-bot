@@ -19,10 +19,11 @@ class Match < ActiveRecord::Base
   has_one :away_team, primary_key: :away_team_id, class_name: "Team", foreign_key: "id"
   has_one :home_team, primary_key: :home_team_id, class_name: "Team", foreign_key: "id"
 
-  scope :today,     -> { where(played_at: Time.zone.now.beginning_of_day .. Time.zone.now.end_of_day) }
-  scope :tomorrow,  -> { where(played_at: (Time.zone.now + 1.days).beginning_of_day .. (Time.zone.now + 1.days).end_of_day) }
-  scope :yesterday, -> { where(played_at: (Time.zone.now - 1.days).beginning_of_day .. (Time.zone.now - 1.days).end_of_day) }
-  scope :played,    -> { where("home_goals IS NOT NULL AND away_goals IS NOT NULL") }
+  scope :today,      -> { where(played_at: Time.zone.now.beginning_of_day .. Time.zone.now.end_of_day) }
+  scope :tomorrow,   -> { where(played_at: (Time.zone.now + 1.days).beginning_of_day .. (Time.zone.now + 1.days).end_of_day) }
+  scope :yesterday,  -> { where(played_at: (Time.zone.now - 1.days).beginning_of_day .. (Time.zone.now - 1.days).end_of_day) }
+  scope :with_goals, -> { where("home_goals IS NOT NULL AND away_goals IS NOT NULL") }
+  scope :played,     -> { where(game_time: "FINAL") }
 
   def self.current
     where(["played_at < ? AND game_time IS NULL OR game_time != ?", Time.zone.now, "FINAL"]).last
