@@ -33,7 +33,7 @@
 /scores
 ```
 
-[http://worldcup2014bot.herokuapp.com/matches/scores](http://worldcup2014bot.herokuapp.com/matches/scores)
+[http://worldcup2014bot.herokuapp.com/scores](http://worldcup2014bot.herokuapp.com/scores)
 
 
 ###### Team's Past/Current Scores:
