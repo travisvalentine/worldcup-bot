@@ -35,3 +35,15 @@
 ```
 /groups/:group
 ```
+
+###### Yesterday's Scores:
+
+```
+/scores/recap
+```
+
+###### Current Score:
+
+```
+/scores/now
+```
