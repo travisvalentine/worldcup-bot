@@ -48,14 +48,20 @@
 /groups/:group
 ```
 
+[http://worldcup2014bot.herokuapp.com/groups/A](http://worldcup2014bot.herokuapp.com/groups/A)
+
 ###### Yesterday's Scores:
 
 ```
 /scores/recap
 ```
 
+[http://worldcup2014bot.herokuapp.com/scores/recap](http://worldcup2014bot.herokuapp.com/scores/recap)
+
 ###### Current Score:
 
 ```
 /scores/now
 ```
+
+[http://worldcup2014bot.herokuapp.com/scores/now](http://worldcup2014bot.herokuapp.com/scores/now)
