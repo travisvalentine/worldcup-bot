@@ -21,7 +21,7 @@ class ScoreUpdater
 
       ongoing_match = match.css(".s-status-abbr").text.strip != "FT"
 
-      return if !correct_match
+      return nil if !correct_match || @match.game_time == "FINAL"
 
       score_array = match.css(".s-scoreText").text.split("-").map(&:to_i)
 
