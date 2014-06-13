@@ -31,8 +31,8 @@ class Group
   end
 
   def self.standings_for(group)
-    return nil unless GROUPS.include?(group)
-    
+    return [] unless GROUPS.include?(group)
+
     standings = Team.where(group: group).map{|team| Standing.new(team, 0, 0, 0, 0, 0, 0, 0)}
     matches = Match.played.where(group: group)
     matches.each do |match|
