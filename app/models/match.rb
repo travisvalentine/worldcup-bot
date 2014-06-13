@@ -19,13 +19,13 @@ class Match < ActiveRecord::Base
   has_one :away_team, primary_key: :away_team_id, class_name: "Team", foreign_key: "id"
   has_one :home_team, primary_key: :home_team_id, class_name: "Team", foreign_key: "id"
 
-  scope :today,     -> { where(played_at: DateTime.now.beginning_of_day .. DateTime.now.end_of_day) }
-  scope :tomorrow,  -> { where(played_at: DateTime.tomorrow.beginning_of_day .. DateTime.tomorrow.end_of_day) }
-  scope :yesterday, -> { where(played_at: DateTime.yesterday.beginning_of_day .. DateTime.yesterday.end_of_day) }
+  scope :today,     -> { where(played_at: Time.zone.now.beginning_of_day .. Time.zone.now.end_of_day) }
+  scope :tomorrow,  -> { where(played_at: (Time.zone.now + 1.days).beginning_of_day .. (Time.zone.now + 1.days).end_of_day) }
+  scope :yesterday, -> { where(played_at: (Time.zone.now - 1.days).beginning_of_day .. (Time.zone.now - 1.days).end_of_day) }
   scope :played,    -> { where("home_goals IS NOT NULL AND away_goals IS NOT NULL") }
 
   def self.current
-    where(["played_at < ? AND game_time != ?", DateTime.now, "FINAL"]).last
+    where(["played_at < ? AND game_time != ?", Time.zone.now, "FINAL"]).last
   end
 
   def short_description
@@ -45,7 +45,7 @@ class Match < ActiveRecord::Base
   end
 
   def formatted_played_at
-    Time.at(played_at).strftime("%-m/%-d %I:%M%p %Z")
+    Time.zone.at(played_at).strftime("%-m/%-d %I:%M%p %Z")
   end
 
   def score_summary
