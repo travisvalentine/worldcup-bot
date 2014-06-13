@@ -12,7 +12,7 @@ class ScoresController < ApplicationController
   end
 
   def now
-    render json: Match.most_recent.update, serializer: ScoreSerializer
+    render json: Match.most_recent.try(:update), serializer: ScoreSerializer
   end
 
   def recap
