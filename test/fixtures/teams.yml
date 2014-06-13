@@ -1,9 +1,16 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  short_name: MyString
-  proper_name: MyString
-
-two:
-  short_name: MyString
-  proper_name: MyString
+bra:
+  acronym: 'BRA'
+  group: 'A'
+  name: 'Brazil'
+cmr:
+  acronym: 'CMR'
+  group: 'A'
+  name: 'Cameroon'
+cro:
+  acronym: 'CRO'
+  group: 'A'
+  name: 'Croatia'
+mex:
+  acronym: 'MEX'
+  group: 'A'
+  name: 'Mexico'
