@@ -24,6 +24,7 @@ class Match < ActiveRecord::Base
   scope :yesterday,  -> { where(played_at: (Time.zone.now - 1.days).beginning_of_day .. (Time.zone.now - 1.days).end_of_day) }
   scope :with_goals, -> { where("home_goals IS NOT NULL AND away_goals IS NOT NULL") }
   scope :played,     -> { where(game_time: "FINAL") }
+  scope :not_played, -> { where("game_time IS NULL") }
 
   def self.current
     where(["played_at < ? AND game_time IS NULL OR game_time != ?", Time.zone.now, "FINAL"]).last
