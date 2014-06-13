@@ -16,7 +16,7 @@ class ScoresController < ApplicationController
   end
 
   def recap
-    matches = Match.yesterday
+    matches = Match.today.played.any? ? Match.today.played : Match.yesterday
 
     render json: matches, each_serializer: ScoreSerializer
   end
