@@ -32,7 +32,7 @@ class ScoreUpdater
 
       score_array = match_page.css(".s-scoreText").text.split("-").map(&:to_i)
 
-      home_score = score_array.first
+      home_score = score_array[1]
       away_score = score_array.last
 
       game_time = match_page.at(".lb-post .event-minute").text
