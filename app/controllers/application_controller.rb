@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   private
 
   def set_time_zone
-    if params[:timezone]
+    if params[:timezone] && params[:timezone].present?
       Time.zone = params[:timezone]
     else
       Time.zone = "UTC"
