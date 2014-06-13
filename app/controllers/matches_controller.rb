@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   def index
-    matches = Match.today
+    matches = Match.today.not_played
 
     render json: matches
   end
