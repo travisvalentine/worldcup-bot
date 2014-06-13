@@ -10,4 +10,10 @@ class ScoresController < ApplicationController
 
     render json: team.past_matches, each_serializer: ScoreSerializer
   end
+
+  def recap
+    matches = Match.yesterday
+
+    render json: matches, each_serializer: ScoreSerializer
+  end
 end

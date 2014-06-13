@@ -19,8 +19,9 @@ class Match < ActiveRecord::Base
   has_one :away_team, primary_key: :away_team_id, class_name: "Team", foreign_key: "id"
   has_one :home_team, primary_key: :home_team_id, class_name: "Team", foreign_key: "id"
 
-  scope :today,    -> { where(played_at: DateTime.now.beginning_of_day .. DateTime.now.end_of_day) }
-  scope :tomorrow, -> { where(played_at: DateTime.tomorrow .. DateTime.tomorrow.end_of_day) }
+  scope :today,     -> { where(played_at: DateTime.now.beginning_of_day .. DateTime.now.end_of_day) }
+  scope :tomorrow,  -> { where(played_at: DateTime.tomorrow.beginning_of_day .. DateTime.tomorrow.end_of_day) }
+  scope :yesterday, -> { where(played_at: DateTime.yesterday.beginning_of_day .. DateTime.yesterday.end_of_day) }
 
   def short_description
     "#{home_team.acronym} vs #{away_team.acronym} - #{formatted_played_at}"
@@ -40,5 +41,9 @@ class Match < ActiveRecord::Base
 
   def formatted_played_at
     Time.at(played_at).strftime("%-m/%-d %I:%M%p %Z")
+  end
+
+  def score_summary
+    "#{home_team.acronym} (#{home_goals}) vs #{away_team.acronym} (#{away_goals}) - #{game_time}"
   end
 end
