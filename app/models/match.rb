@@ -47,7 +47,11 @@ class Match < ActiveRecord::Base
   end
 
   def formatted_played_at
-    Time.zone.at(played_at).strftime("%-m/%-d %I:%M%p %Z")
+    localized_played_at.strftime("%-m/%-d %I:%M%p %Z")
+  end
+
+  def localized_played_at
+    Time.zone.at(played_at)
   end
 
   def score_summary

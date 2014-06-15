@@ -11,7 +11,7 @@ class ScoreUpdater
     fifa_prefix = "http://www.fifa.com"
     match_index_url = "/worldcup/matches/index.html"
 
-    formatted_match_date = @match.played_at.to_date.to_s.gsub("-","")
+    formatted_match_date = @match.localized_played_at.to_date.to_s.gsub("-","")
 
     fifa_matches = Nokogiri::HTML(open(fifa_prefix + match_index_url))
 
