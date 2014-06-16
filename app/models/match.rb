@@ -61,4 +61,8 @@ class Match < ActiveRecord::Base
   def update
     ScoreUpdater.new(self).update
   end
+
+  def odds
+    Odds.new(self).scrape
+  end
 end

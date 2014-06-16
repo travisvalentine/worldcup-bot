@@ -7,6 +7,8 @@ WorldcupBot::Application.routes.draw do
     end
   end
 
+  resources :odds, only: [:index]
+
   resources :scores, only: [:index, :show] do
     collection do
       get "now"
