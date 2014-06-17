@@ -37,8 +37,8 @@ class Group
     matches = Match.played.where(group: group)
     matches.each do |match|
       if match.home_goals == match.away_goals
-        standings.detect {|st| st.team == match.home_team}.tie(match.home_goals)
-        standings.detect {|st| st.team == match.away_team}.tie(match.home_goals)
+        standings.detect {|st| st.team == match.home_team}.add_tie(match.home_goals)
+        standings.detect {|st| st.team == match.away_team}.add_tie(match.home_goals)
       elsif match.home_goals > match.away_goals
         standings.detect {|st| st.team == match.home_team}.add_win(match.home_goals, match.away_goals)
         standings.detect {|st| st.team == match.away_team}.add_loss(match.away_goals, match.home_goals)
