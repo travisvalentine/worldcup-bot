@@ -33,7 +33,7 @@ class Group
   def self.standings_for(group)
     return [] unless GROUPS.include?(group)
 
-    standings = Team.where(group: group).map{|team| Standing.new(team, 0, 0, 0, 0, 0, 0, 0)}
+    standings = Team.where(group: group).map{|team| Standing.new(team, 0, 0, 0, 0, 0, 0, 0, 0)}
     matches = Match.played.where(group: group)
     matches.each do |match|
       if match.home_goals == match.away_goals
