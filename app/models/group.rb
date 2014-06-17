@@ -1,7 +1,7 @@
 class Group
   GROUPS = ('A'..'F')
 
-  Standing = Struct.new :team, :games_played, :wins, :draws, :losses, :points, :goals_for, :goals_against, :ties do
+  Standing = Struct.new :team, :games_played, :wins, :draws, :losses, :points, :goals_for, :goals_against do
     def add_win(goals_for, goals_against)
       self.games_played += 1
       self.wins += 1
@@ -19,7 +19,7 @@ class Group
 
     def add_tie(goals)
       self.games_played += 1
-      self.ties += 1
+      self.draws += 1
       self.points += 1
       self.goals_for += goals
       self.goals_against += goals
@@ -33,7 +33,7 @@ class Group
   def self.standings_for(group)
     return [] unless GROUPS.include?(group)
 
-    standings = Team.where(group: group).map{|team| Standing.new(team, 0, 0, 0, 0, 0, 0, 0, 0)}
+    standings = Team.where(group: group).map{|team| Standing.new(team, 0, 0, 0, 0, 0, 0, 0)}
     matches = Match.played.where(group: group)
     matches.each do |match|
       if match.home_goals == match.away_goals
