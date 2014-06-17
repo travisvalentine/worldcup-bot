@@ -1,7 +1,7 @@
 class Group
   GROUPS = ('A'..'F')
 
-  Standing = Struct.new :team, :games_played, :wins, :draws, :losses, :points, :goals_for, :goals_against do
+  Standing = Struct.new :team, :games_played, :wins, :draws, :losses, :points, :goals_for, :goals_against, :ties do
     def add_win(goals_for, goals_against)
       self.games_played += 1
       self.wins += 1
