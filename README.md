@@ -1,5 +1,7 @@
 ## Endpoints:
 
+**NOTE:** All endpoints can take a timezone parameter to provide as accurate data as possible for things like matches, scores, etc. Examples would be `/today?timezone=PST`, `/odds?timezone=Brasilia`, `matches/today?timezone=EST`. If no timezone param is passed, the query will run against UTC.
+
 ###### Root: [http://worldcup2014bot.herokuapp.com/](http://worldcup2014bot.herokuapp.com/)
 
 ###### Gifs:
