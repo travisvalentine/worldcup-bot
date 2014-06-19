@@ -14,6 +14,8 @@ class GifFetcher
 
     article_summaries = world_cup_html.css(".column.big article")
 
+    links = []
+
     article_summaries.map do |summary|
       link       = summary.at_css("a.link")
       link_url   = link["href"]
@@ -24,9 +26,12 @@ class GifFetcher
 
         images = article.css(".articleBody img.size-full")
 
-        gifs = images.map {|i| i["src"] }
+        links << images.map {|i| i["src"] }
       end
+
     end.compact
+
+    { summary: @match.score_summary, matches: links.flatten }
   end
 
   def relevant?(title)

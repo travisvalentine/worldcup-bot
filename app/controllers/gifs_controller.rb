@@ -1,6 +1,6 @@
 class GifsController < ApplicationController
   def index
-    gifs = Match.today.with_goals.map(&:gifs).flatten
+    gifs = Match.yesterday.with_goals.map(&:gifs)
 
     render json: gifs
   end
