@@ -9,3 +9,5 @@ gem "pg"
 gem "rails", "4.0.4"
 
 gem "rails-api"
+
+gem "rails_12factor"
