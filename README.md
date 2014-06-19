@@ -18,13 +18,13 @@
 
 [http://worldcup2014bot.herokuapp.com/groups/A](http://worldcup2014bot.herokuapp.com/groups/A)
 
-###### More Info (links to FIFA for team acronym):
+###### FIFA link for team:
 
 ```
-/more/:team_country_acronym
+/links/:team_country_acronym
 ```
 
-[http://worldcup2014bot.herokuapp.com/more/USA](http://worldcup2014bot.herokuapp.com/more/USA)
+[http://worldcup2014bot.herokuapp.com/links/USA](http://worldcup2014bot.herokuapp.com/links/USA)
 
 ###### Moneyline Odds:
 
