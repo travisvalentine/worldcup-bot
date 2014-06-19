@@ -1,4 +1,8 @@
 WorldcupBot::Application.routes.draw do
+  resources :gifs, only: [:index] do
+
+  end
+
   resources :links, only: [:show]
 
   resources :matches, only: [:index] do

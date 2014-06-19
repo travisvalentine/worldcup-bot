@@ -65,4 +65,9 @@ class Match < ActiveRecord::Base
   def odds
     Odds.new(self).scrape
   end
+
+  def gifs
+    GifFetcher.new(self).scrape
+  end
+
 end
