@@ -31,7 +31,7 @@ class GifFetcher
 
     end.compact
 
-    { summary: @match.score_summary, matches: links.flatten }
+    { summary: @match.score_summary, links: links.flatten }
   end
 
   def relevant?(title)
