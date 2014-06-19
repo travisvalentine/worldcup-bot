@@ -1,6 +1,8 @@
 WorldcupBot::Application.routes.draw do
   resources :gifs, only: [:index] do
-
+    collection do
+      get "recap"
+    end
   end
 
   resources :links, only: [:show]
