@@ -4,13 +4,21 @@
 
 ###### Root: [http://worldcup2014bot.herokuapp.com/](http://worldcup2014bot.herokuapp.com/)
 
-###### Gifs:
+###### Gifs - today's matches:
 
 ```
 /gifs
 ```
 
 [http://worldcup2014bot.herokuapp.com/gifs](http://worldcup2014bot.herokuapp.com/gifs)
+
+###### Gifs - yesterday's matches:
+
+```
+/gifs/recap
+```
+
+[http://worldcup2014bot.herokuapp.com/gifs/recap](http://worldcup2014bot.herokuapp.com/gifs/recap)
 
 ###### Groups Standings:
 
