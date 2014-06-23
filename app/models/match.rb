@@ -27,7 +27,7 @@ class Match < ActiveRecord::Base
   scope :not_played, -> { where("game_time IS NULL") }
 
   def self.current
-    where(["played_at < ? AND game_time IS NULL OR game_time != ?", Time.zone.now, "FINAL"]).last
+    where(["played_at < ? AND game_time IS NULL OR game_time != ?", Time.zone.now, "FINAL"])
   end
 
   def short_description
