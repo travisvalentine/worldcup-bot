@@ -12,7 +12,7 @@ class ScoresController < ApplicationController
   end
 
   def now
-    render json: Match.current.map(&:update), serializer: ScoreSerializer
+    render json: Match.current.map(&:update), each_serializer: ScoreSerializer
   end
 
   def recap
