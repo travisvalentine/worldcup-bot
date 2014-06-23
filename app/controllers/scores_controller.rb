@@ -1,6 +1,6 @@
 class ScoresController < ApplicationController
   def index
-    matches = Match.today.with_goals
+    matches = Match.today.with_goals.map(&:update)
 
     render json: matches, each_serializer: ScoreSerializer
   end
