@@ -1,3 +1,5 @@
 class ScoreSerializer < ActiveModel::Serializer
-  attributes :score_summary
+  attributes :home_goals,
+             :away_goals,
+             :score_summary
 end

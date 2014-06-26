@@ -21,4 +21,10 @@ class Team < ActiveRecord::Base
   def fifa_link
     "Go to FIFA.com for more on #{name} - http://www.fifa.com/worldcup/teams/team=#{fifa_team_id}/index.html"
   end
+
+  def group_ranking
+    standings = Group.standings_for(self.group)
+    index = standings.index { |standing| standing.team.acronym == self.acronym }
+    index + 1
+  end
 end
