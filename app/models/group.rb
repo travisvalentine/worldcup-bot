@@ -1,5 +1,5 @@
 class Group
-  GROUPS = ('A'..'F')
+  GROUPS = ('A'..'H')
 
   Standing = Struct.new :team, :games_played, :wins, :draws, :losses, :points, :goals_for, :goals_against do
     def add_win(goals_for, goals_against)
