@@ -11,6 +11,7 @@ WorldcupBot::Application.routes.draw do
 
   resources :matches, only: [:index] do
     collection do
+      get "played"
       get "tomorrow"
     end
   end

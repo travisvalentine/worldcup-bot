@@ -93,6 +93,14 @@
 
 [http://worldcup2014bot.herokuapp.com/matches/tomorrow](http://worldcup2014bot.herokuapp.com/matches/tomorrow)
 
+###### Past Matches:
+
+```
+/matches/played
+```
+
+[http://worldcup2014bot.herokuapp.com/matches/tomorrow](http://worldcup2014bot.herokuapp.com/matches/played)
+
 ###### Team names:
 
 ```

@@ -11,4 +11,10 @@ class MatchesController < ApplicationController
     render json: matches
   end
 
+  def played
+    matches = Match.played
+
+    render json: matches
+  end
+
 end
