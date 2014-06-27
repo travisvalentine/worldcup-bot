@@ -39,7 +39,8 @@ class Odds
         draw_bet_set   = draw_row.css(".moneyline-line-normal span").text
         draw_line      = draw_bet_set.present? ? draw_bet_set : draw_row.css(".moneyline-line-sharp a").text
 
-        next unless [@match.home_team.name, @match.home_team.acronym].include?(home_team_name)
+        next unless [@match.home_team.name, @match.home_team.acronym].include?(home_team_name) &&
+                    [@match.away_team.name, @match.away_team.acronym].include?(away_team_name)
 
         Breakdown.new(home_team_name, home_line, away_team_name, away_line, draw_line)
       end
