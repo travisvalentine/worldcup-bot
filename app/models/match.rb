@@ -70,4 +70,68 @@ class Match < ActiveRecord::Base
     GifFetcher.new(self).scrape
   end
 
+  def started?
+    played_at < Time.zone.now
+  end
+
+  def winner
+    if !started?
+      "not started"
+    elsif draw? && no_penalty_kicks?
+      "draw"
+    else
+      winning_team
+    end
+  end
+
+  def loser
+    if !started?
+      "not started"
+    elsif draw? && no_penalty_kicks?
+      "draw"
+    else
+      losing_team
+    end
+  end
+
+  def no_penalty_kicks?
+    home_penalty_goals.nil? && away_penalty_goals.nil?
+  end
+
+  def draw?
+    home_goals == away_goals
+  end
+
+  def winning_team
+    if home_team_won?
+      home_team.name
+    else
+      away_team.name
+    end
+  end
+
+  def losing_team
+    if home_team_won?
+      away_team.name
+    else
+      home_team.name
+    end
+  end
+
+  def home_team_won?
+    if no_penalty_kicks?
+      home_goals > away_goals
+    else
+      home_penalty_goals > away_penalty_goals
+    end
+  end
+
+  def away_team_won?
+    if no_penalty_kicks?
+      away_goals > home_goals
+    else
+      away_penalty_goals > home_penalty_goals
+    end
+  end
+
 end

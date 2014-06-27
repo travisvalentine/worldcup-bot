@@ -1,5 +1,7 @@
 class MatchSerializer < ActiveModel::Serializer
   attributes :short_description,
+             :winner,
+             :loser,
              :stadium_name,
              :full_location,
              :odds,
