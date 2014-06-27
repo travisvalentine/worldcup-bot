@@ -63,6 +63,7 @@ class Match < ActiveRecord::Base
   end
 
   def odds
+    return [] if started? || finished?
     Odds.new(self).scrape
   end
 
@@ -72,6 +73,10 @@ class Match < ActiveRecord::Base
 
   def started?
     played_at < Time.zone.now
+  end
+
+  def finished?
+    game_time == "FINAL"
   end
 
   def winner
