@@ -6,7 +6,7 @@ class CardsController < ApplicationController
   end
 
   def team
-    team = Team.where("name LIKE ? OR acronym LIKE ?", params[:team].capitalize, params[:team].upcase).first
+    team = Team.where("name LIKE ? OR acronym LIKE ?", params[:name].capitalize, params[:name].upcase).first
 
     cards = team.nil? ? [] : Card.for_team(team.name)
 

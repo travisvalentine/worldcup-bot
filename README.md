@@ -4,6 +4,22 @@
 
 ###### Root: [http://worldcup2014bot.herokuapp.com/](http://worldcup2014bot.herokuapp.com/)
 
+###### Cards - Suspensions:
+
+```
+/cards
+```
+
+[http://worldcup2014bot.herokuapp.com/cards](http://worldcup2014bot.herokuapp.com/cards)
+
+###### Cards - For Team:
+
+```
+/cards/team?name=usa
+```
+
+[http://worldcup2014bot.herokuapp.com/cards/team?name=usa](http://worldcup2014bot.herokuapp.com/cards/team?name=usa)
+
 ###### Gifs - today's matches:
 
 ```
