@@ -55,7 +55,11 @@ class Match < ActiveRecord::Base
   end
 
   def score_summary
-    "#{home_team.acronym} (#{home_goals}) vs #{away_team.acronym} (#{away_goals}) - #{game_time}"
+    if no_penalty_kicks?
+      "#{home_team.acronym} (#{home_goals}) vs #{away_team.acronym} (#{away_goals}) - #{game_time}"
+    else
+      "#{home_team.acronym} (G: #{home_goals}, PK: #{home_penalty_goals}) vs #{away_team.acronym} (G: #{away_goals}, PK: #{away_penalty_goals}) - #{game_time}"
+    end
   end
 
   def update
