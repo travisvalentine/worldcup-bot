@@ -1,6 +1,12 @@
 WorldcupBot::Application.routes.draw do
   root to: "info#home"
 
+  resources :cards, only: [:index] do
+    collection do
+      get "team"
+    end
+  end
+
   resources :gifs, only: [:index] do
     collection do
       get "recap"
