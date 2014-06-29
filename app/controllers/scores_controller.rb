@@ -22,7 +22,9 @@ class ScoresController < ApplicationController
   end
 
   def live
-    matches = Match.today.with_goals.map(&:update).select { |m| m.last_scored_at > Time.zone.now - 2.seconds }
+    lapsed_time = params[:seconds_ago].to_i.seconds
+
+    matches = Match.today.with_goals.map(&:update).select { |m| m.last_scored_at > Time.zone.now - lapsed_time }
 
     render json: matches, each_serializer: ScoreSerializer
   end
