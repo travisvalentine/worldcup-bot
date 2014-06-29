@@ -67,7 +67,7 @@ class Match < ActiveRecord::Base
   end
 
   def odds
-    return [] if started? || finished?
+    return [] if finished?
     Odds.new(self).scrape
   end
 
