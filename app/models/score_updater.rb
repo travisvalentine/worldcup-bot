@@ -39,7 +39,11 @@ class ScoreUpdater
 
       time = ongoing_match ? game_time.strip : "FINAL"
 
-      @match.update_attributes(home_goals: home_score, away_goals: away_score, game_time: time)
+      if home_score != @match.home_goals || away_score != @match.away_goals
+        @match.update_attributes(home_goals: home_score, away_goals: away_score, game_time: time, last_scored_at: Time.zone.now)
+      else
+        @match.update_attributes(home_goals: home_score, away_goals: away_score, game_time: time)
+      end
     end
 
     @match
