@@ -144,4 +144,16 @@ class Match < ActiveRecord::Base
     end
   end
 
+  def score_changed?(home_score, away_score)
+    home_score != home_goals || away_score != away_goals
+  end
+
+  def tied_at_zero?
+    home_goals.zero? and away_goals.zero?
+  end
+
+  def has_nil_score?
+    home_goals.nil? and away_goals.nil?
+  end
+
 end
