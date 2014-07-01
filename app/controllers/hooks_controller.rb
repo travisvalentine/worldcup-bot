@@ -1,5 +1,5 @@
 class HooksController < ApplicationController
   def last_goal
-    raise params.inspect
+    render json: params
   end
 end
