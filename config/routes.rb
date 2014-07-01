@@ -13,7 +13,7 @@ WorldcupBot::Application.routes.draw do
     end
   end
 
-  resourcs :hooks, only: [] do
+  resources :hooks, only: [] do
     collection do
       post "last_goal"
     end
