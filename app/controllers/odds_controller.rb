@@ -1,6 +1,6 @@
 class OddsController < ApplicationController
   def index
-    odds = Match.today.ongoing.map(&:odds).flatten
+    odds = Match.today.unfinished.map(&:odds).flatten
 
     render json: odds
   end
