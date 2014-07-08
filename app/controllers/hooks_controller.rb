@@ -6,6 +6,7 @@ class HooksController < ApplicationController
     room = campfire.find_room_by_id ENV["cf_sroom"]
 
     room.speak data["text"]
+    room.speak data["video"]
     room.speak data["gif"]
   end
 end
