@@ -14,7 +14,8 @@ class Odds
 
     matches = Nokogiri::HTML(open(betting_url))
 
-    match_sections = matches.xpath("//div[following-sibling::div[@class='schedule-date']]")
+    # match_sections = matches.xpath("//div[following-sibling::div[@class='schedule-date']]")
+    match_sections = matches.css(".event")
 
     match_sections.map do |section|
       if section["class"].include?("event left")
