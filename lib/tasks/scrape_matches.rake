@@ -5,7 +5,7 @@ task :matches => :environment do
   require 'nokogiri'
   require 'open-uri'
 
-  match_url = "http://www.fifa.com/worldcup/matches/index.html"
+  match_url = "http://www.fifa.com/womensworldcup/matches/index.html"
 
   fifa_matches = Nokogiri::HTML(open(match_url))
 
